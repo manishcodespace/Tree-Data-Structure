@@ -62,6 +62,58 @@ class BinaryTree {
         // Print inorder traversal
         console.log(result.join(' '));
     }
+
+    // Preorder Traversal (Node → Left → Right)
+    Preorder(node: TreeNode | null = this.root): void {
+        const result: number[] = [];   // Array to store traversal result
+
+        // Helper recursive function
+        const traverse = (currentNode: TreeNode | null): void => {
+            // Base case: if node is null, return
+            if (currentNode === null) return;
+
+            // Step 1: Visit the current node
+            result.push(currentNode.data);
+
+            // Step 2: Traverse left subtree
+            traverse(currentNode.left);
+
+            // Step 3: Traverse right subtree
+            traverse(currentNode.right);
+        };
+
+        // Start traversal from the given node (default is root)
+        traverse(node);
+
+        // Print preorder traversal
+        console.log(result.join(' '));
+    }
+
+    // Postorder Traversal (Left → Right → Node)
+    Postorder(node: TreeNode | null = this.root): void {
+        const result: number[] = [];   // Array to store traversal result
+
+        // Helper recursive function
+        const traverse = (currentNode: TreeNode | null): void => {
+            // Base case: if node is null, return
+            if (currentNode === null) return;
+
+            // Step 1: Traverse left subtree
+            traverse(currentNode.left);
+
+            // Step 2: Traverse right subtree
+            traverse(currentNode.right);
+
+            // Step 3: Visit the current node
+            result.push(currentNode.data);
+        };
+
+        // Start traversal from the given node (default is root)
+        traverse(node);
+
+        // Print postorder traversal
+        console.log(result.join(' '));
+    }
 }
 
 // Creating BinaryTree object
@@ -72,3 +124,9 @@ tree.createSampleTree();
 
 // Performing inorder traversal
 tree.Inorder();
+
+// Performing preorder traversal
+tree.Preorder();
+
+// Performing postorder traversal
+tree.Postorder();
