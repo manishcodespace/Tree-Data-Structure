@@ -1,0 +1,74 @@
+// TreeNode represents a single node of the binary tree
+class TreeNode {
+    data: number;               // Value stored in the node
+    left: TreeNode | null;      // Reference to left child
+    right: TreeNode | null;     // Reference to right child
+
+    // Constructor initializes node data and sets children to null
+    constructor(data: number) {
+        this.data = data;
+        this.left = null;
+        this.right = null;
+    }
+}
+
+// BinaryTree class handles tree operations (OOP concept)
+class BinaryTree {
+    public root: TreeNode | null;   // Root node of the tree
+
+    // Constructor initializes an empty tree
+    constructor() {
+        this.root = null;
+    }
+
+    // Method to create a sample binary tree
+    createSampleTree(): void {
+        // Creating root node
+        this.root = new TreeNode(1);
+
+        // Creating level 1 children
+        this.root.left = new TreeNode(2);
+        this.root.right = new TreeNode(3);
+
+        // Creating level 2 children
+        this.root.left.left = new TreeNode(4);
+        this.root.left.right = new TreeNode(5);
+        this.root.right.left = new TreeNode(6);
+        this.root.right.right = new TreeNode(7);
+    }
+
+    // Inorder Traversal (Left → Node → Right)
+    Inorder(node: TreeNode | null = this.root): void {
+        const result: number[] = [];   // Array to store traversal result
+
+        // Helper recursive function
+        const traverse = (currentNode: TreeNode | null): void => {
+            // Base case: if node is null, return
+            if (currentNode === null) return;
+
+            // Step 1: Traverse left subtree
+            traverse(currentNode.left);
+
+            // Step 2: Visit the current node
+            result.push(currentNode.data);
+
+            // Step 3: Traverse right subtree
+            traverse(currentNode.right);
+        };
+
+        // Start traversal from the given node (default is root)
+        traverse(node);
+
+        // Print inorder traversal
+        console.log(result.join(' '));
+    }
+}
+
+// Creating BinaryTree object
+const tree = new BinaryTree();
+
+// Creating the tree structure
+tree.createSampleTree();
+
+// Performing inorder traversal
+tree.Inorder();
